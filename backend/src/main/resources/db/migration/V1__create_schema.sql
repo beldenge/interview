@@ -1,4 +1,4 @@
--- Start at 4 to skip the 3 inserts in data.sql
+-- Start at 4 to skip the 3 inserts in V2__seed_demo_data.sql
 CREATE SEQUENCE app_user_id_seq START WITH 4 INCREMENT BY 50;
 CREATE SEQUENCE vehicle_id_seq START WITH 4 INCREMENT BY 50;
 

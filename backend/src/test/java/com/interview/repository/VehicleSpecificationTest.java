@@ -16,7 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest(properties = {
         "spring.jpa.hibernate.ddl-auto=create-drop",
-        "spring.sql.init.mode=never"
+        "spring.sql.init.mode=never",
+        "spring.flyway.enabled=false"
 })
 class VehicleSpecificationTest {
 
@@ -146,4 +147,3 @@ class VehicleSpecificationTest {
         return vehicle;
     }
 }
-

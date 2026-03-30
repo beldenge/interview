@@ -3,11 +3,14 @@ package com.interview.controller;
 import com.interview.entity.FuelType;
 import com.interview.entity.Vehicle;
 import com.interview.repository.VehicleRepository;
+import com.interview.support.EnabledIfDockerAvailable;
+import com.interview.support.PostgresContainerConfiguration;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,8 +26,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@EnabledIfDockerAvailable
+@SpringBootTest(properties = "spring.h2.console.enabled=false")
 @AutoConfigureMockMvc
+@Import(PostgresContainerConfiguration.class)
 @Transactional
 class VehicleApiTest {
     private static final String PASSWORD = "password";
@@ -298,5 +303,3 @@ class VehicleApiTest {
             """.formatted(modelYear, make, model, color, licensePlate, vin, fuelType, doors, mileage);
     }
 }
-
-
